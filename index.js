@@ -12,6 +12,12 @@ const port = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster1.ti8fd.mongodb.net/?retryWrites=true&w=majority`;
 
